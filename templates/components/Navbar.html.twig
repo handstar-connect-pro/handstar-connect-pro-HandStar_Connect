@@ -1,0 +1,62 @@
+{% if variant == 'nav' %}
+  {# Simple nav variant #}
+  <ul class="nav {{ alignment ? 'justify-content-' ~ alignment : '' }}">
+    {% for item in items %}
+      <li class="nav-item">
+        <a class="nav-link {{ item.active is defined and item.active ? 'active' : '' }} {{ item.disabled is defined and item.disabled ? 'disabled' : '' }}"
+           href="{{ item.href }}"
+           aria-current="{{ item.active is defined and item.active ? 'page' : '' }}"
+           {{ item.disabled is defined and item.disabled ? 'aria-disabled="true"' : '' }}>
+          {{ item.text }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  {# Full navbar variant (default) #}
+  <nav class="navbar {{ expand ? 'navbar-expand-' ~ expand : '' }} {{ background }}">
+    <div class="{{ containerClass }}">
+      {% if brandType == 'link' %}
+        <a class="navbar-brand" href="{{ brandHref }}">{{ brand }}</a>
+      {% else %}
+        <span class="navbar-brand mb-0 h1">{{ brand }}</span>
+      {% endif %}
+
+      {% if showToggler and items is not empty %}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#{{ collapseId }}" aria-controls="{{ collapseId }}" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      {% endif %}
+
+      {% if items is not empty %}
+        <div class="{{ showToggler ? 'collapse navbar-collapse' : '' }}" id="{{ collapseId }}">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% for item in items %}
+              <li class="nav-item">
+                <a class="nav-link {{ item.active is defined and item.active ? 'active' : '' }} {{ item.disabled is defined and item.disabled ? 'disabled' : '' }}"
+                   href="{{ item.href }}"
+                   aria-current="{{ item.active is defined and item.active ? 'page' : '' }}"
+                   {{ item.disabled is defined and item.disabled ? 'aria-disabled="true"' : '' }}>
+                  {{ item.text }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+
+          {% if showSearch %}
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="{{ searchPlaceholder }}" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          {% endif %}
+        </div>
+      {% elseif showSearch %}
+        {# If no items but search is shown, put search outside collapse #}
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="{{ searchPlaceholder }}" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      {% endif %}
+    </div>
+  </nav>
+{% endif %}

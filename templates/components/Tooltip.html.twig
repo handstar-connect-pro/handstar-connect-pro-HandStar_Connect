@@ -1,0 +1,10 @@
+<button type="button"
+        class="{{ buttonClass }}"
+        {% if enabled %}
+        data-bs-toggle="tooltip"
+        data-bs-placement="{{ placement }}"
+        data-bs-custom-class="{{ customClass }}"
+        data-bs-title="{{ tooltip }}"
+        {% endif %}>
+  {{ text }}
+</button>

@@ -1,0 +1,116 @@
+{% set menuItems = menuItems is iterable ? menuItems : [] %}
+
+{% set sidebarClasses = [
+    'dashboard-sidebar',
+    'd-flex flex-column',
+    variant == 'dark' ? 'bg-dark text-white' : 'bg-light',
+    collapsible ? 'sidebar-collapsible' : '',
+    collapsed ? 'collapsed' : '',
+    'border-end',
+    'shadow-sm'
+]|join(' ') %}
+
+<aside class="{{ sidebarClasses }}" style="width: {{ collapsed ? '70px' : width }}; transition: width 0.3s ease;" {{ attributes }}>
+    <div class="sidebar-header p-3 border-bottom d-flex align-items-center justify-content-between">
+        {% if showLogo and logoPath %}
+            <a href="{{ brandHref }}" class="sidebar-brand text-decoration-none d-flex align-items-center gap-2">
+                <img src="{{ logoPath }}" alt="{{ brand }}" class="sidebar-logo" style="width: 32px; height: 32px;">
+                {% if not collapsed %}
+                    <span class="sidebar-brand-text fw-bold fs-5">{{ brand }}</span>
+                {% endif %}
+            </a>
+        {% else %}
+            <a href="{{ brandHref }}" class="sidebar-brand text-decoration-none d-flex align-items-center gap-2">
+                {% if not collapsed %}
+                    <span class="sidebar-brand-text fw-bold fs-5">{{ brand }}</span>
+                {% endif %}
+            </a>
+        {% endif %}
+
+        {% if collapsible %}
+            <button class="sidebar-toggler btn btn-sm btn-outline-secondary border-0"
+                    data-action="live#action"
+                    data-action-name="toggleCollapsed"
+                    title="{{ collapsed ? 'Développer' : 'Réduire' }}">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+        {% endif %}
+    </div>
+
+    {% if userName and not collapsed %}
+        <div class="sidebar-user p-3 border-bottom d-flex align-items-center gap-2">
+            {% if userAvatar %}
+                <img src="{{ userAvatar }}" alt="{{ userName }}" class="sidebar-user-avatar rounded-circle" style="width: 40px; height: 40px;">
+            {% else %}
+                <div class="sidebar-user-avatar rounded-circle d-flex align-items-center justify-content-center bg-primary text-white fw-bold" style="width: 40px; height: 40px;">
+                    {{ userName|first|upper }}
+                </div>
+            {% endif %}
+            <div class="sidebar-user-info flex-grow-1" style="min-width: 0;">
+                <div class="sidebar-user-name fw-bold text-truncate">{{ userName }}</div>
+                {% if userRole %}
+                    <div class="sidebar-user-role text-muted text-truncate small">{{ userRole }}</div>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
+    <nav class="sidebar-nav flex-grow-1 overflow-auto p-2">
+        <ul class="sidebar-menu list-unstyled m-0">
+            {% for item in menuItems %}
+                <li class="sidebar-menu-item mb-1 {{ item.active is defined and item.active ? 'active' : '' }}">
+                    <a href="{{ item.href }}"
+                       class="sidebar-menu-link text-decoration-none d-flex align-items-center gap-2 p-2 rounded {{ item.active is defined and item.active ? variant == 'dark' ? 'bg-primary text-white' : 'bg-primary-subtle text-primary' : variant == 'dark' ? 'text-white hover-bg-dark' : 'text-dark hover-bg-light' }}">
+                        {% if item.icon %}
+                            <span class="sidebar-menu-icon d-flex align-items-center justify-content-center" style="width: 20px;">
+                                {{ item.icon|raw }}
+                            </span>
+                        {% endif %}
+                        {% if not collapsed %}
+                            <span class="sidebar-menu-text flex-grow-1 text-truncate">{{ item.label }}</span>
+                            {% if item.badge is defined and item.badge %}
+                                <span class="sidebar-menu-badge badge bg-danger rounded-pill">{{ item.badge }}</span>
+                            {% endif %}
+                        {% endif %}
+                        {% if item.children is defined and item.children and not collapsed %}
+                            <span class="sidebar-menu-arrow ms-auto">
+                                <i class="bi bi-chevron-down"></i>
+                            </span>
+                        {% endif %}
+                    </a>
+
+                    {% if item.children is defined and item.children and not collapsed %}
+                        <ul class="sidebar-submenu list-unstyled mt-1 ms-3 ps-2 border-start">
+                            {% for child in item.children %}
+                                <li class="sidebar-submenu-item mb-1 {{ child.active is defined and child.active ? 'active' : '' }}">
+                                    <a href="{{ child.href }}"
+                                       class="sidebar-submenu-link text-decoration-none d-flex align-items-center gap-2 p-1 rounded small {{ child.active is defined and child.active ? 'text-primary fw-bold' : variant == 'dark' ? 'text-white-50 hover-text-white' : 'text-muted hover-text-dark' }}">
+                                        {% if child.icon %}
+                                            <span class="sidebar-submenu-icon d-flex align-items-center justify-content-center" style="width: 16px;">
+                                                {{ child.icon|raw }}
+                                            </span>
+                                        {% endif %}
+                                        <span class="sidebar-submenu-text flex-grow-1 text-truncate">{{ child.label }}</span>
+                                        {% if child.badge is defined and child.badge %}
+                                            <span class="sidebar-submenu-badge badge bg-danger rounded-pill small">{{ child.badge }}</span>
+                                        {% endif %}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+
+    {% if not collapsed %}
+        <div class="sidebar-footer p-3 border-top text-center">
+            <div class="sidebar-footer-content">
+                <div class="sidebar-footer-text text-muted small">
+                    &copy; {{ "now"|date("Y") }} {{ brand }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</aside>

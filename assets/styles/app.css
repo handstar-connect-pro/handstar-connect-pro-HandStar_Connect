@@ -1,0 +1,268 @@
+/* Bootstrap 5 custom styles for HandStar Connect */
+
+/* Custom variables - HandStar Connect Branding */
+:root {
+    --primary-color: #FF7070;      /* Custom primary color */
+    --secondary-color: #70FFFF;    /* Custom secondary color */
+    --success-color: #10b981;      /* Emerald-500 */
+    --info-color: #0ea5e9;         /* Sky-500 */
+    --warning-color: #f59e0b;      /* Amber-500 */
+    --danger-color: #ef4444;       /* Red-500 */
+    --light-color: #f8fafc;        /* Slate-50 */
+    --dark-color: #2B2B2B;         /* Custom dark color */
+}
+
+/* Bootstrap theme customization */
+:root {
+    --bs-primary: var(--primary-color);
+    --bs-secondary: var(--secondary-color);
+    --bs-success: var(--success-color);
+    --bs-info: var(--info-color);
+    --bs-warning: var(--warning-color);
+    --bs-danger: var(--danger-color);
+    --bs-light: var(--light-color);
+    --bs-dark: var(--dark-color);
+}
+
+/* Apply brand colors to Bootstrap components */
+.btn-primary {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    opacity: 0.9;
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.border-primary {
+    border-color: var(--primary-color) !important;
+}
+
+/* Primary color utilities */
+.bg-primary-solid {
+    background: var(--primary-color) !important;
+}
+
+.text-primary-gradient {
+    background: var(--primary-color);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Dashboard sidebar adjustments */
+.dashboard-sidebar {
+    width: 250px;
+    position: fixed;
+    height: 100vh;
+    z-index: 1040;
+}
+
+/* Main content margin for sidebar */
+.ms-250 {
+    margin-left: 250px;
+}
+
+/* Responsive sidebar */
+@media (max-width: 768px) {
+    .dashboard-sidebar {
+        width: 70px;
+    }
+    .ms-250 {
+        margin-left: 70px;
+    }
+}
+
+/* Custom card styles */
+.dashboard-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Notification badge */
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    min-width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+}
+
+/* User avatar */
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    font-weight: 600;
+}
+
+/* Live component animations */
+.live-component {
+    transition: all 0.3s ease;
+}
+
+/* Form controls */
+.form-control-custom {
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    padding: 0.5rem 0.75rem;
+}
+
+.form-control-custom:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(255, 112, 112, 0.25);
+}
+
+/* Button customizations */
+.btn-custom {
+    border-radius: 8px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+}
+
+/* Table customizations */
+.table-custom {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table-custom thead th {
+    background-color: var(--light-color);
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+}
+
+/* Alert customizations */
+.alert-custom {
+    border-radius: 8px;
+    border: none;
+}
+
+/* Progress bar customizations */
+.progress-custom {
+    height: 10px;
+    border-radius: 5px;
+}
+
+/* Utility classes */
+.text-small {
+    font-size: 0.875rem;
+}
+
+.text-xsmall {
+    font-size: 0.75rem;
+}
+
+.border-light {
+    border-color: #e9ecef !important;
+}
+
+.rounded-xl {
+    border-radius: 12px;
+}
+
+.w-70 {
+    width: 70px !important;
+}
+
+.w-250 {
+    width: 250px !important;
+}
+
+.w-300 {
+    width: 300px !important;
+}
+
+.max-h-300 {
+    max-height: 300px !important;
+}
+
+.shadow-sm {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-md {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-lg {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover utilities */
+.hover-bg-light:hover {
+    background-color: var(--light-color) !important;
+}
+
+.hover-bg-danger-subtle:hover {
+    background-color: rgba(220, 53, 69, 0.1) !important;
+}
+
+.hover-text-dark:hover {
+    color: var(--dark-color) !important;
+}
+
+.hover-text-danger:hover {
+    color: var(--danger-color) !important;
+}
+
+.hover-text-primary-dark:hover {
+    color: var(--secondary-color) !important;
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Bootstrap utility extensions */
+.bg-primary-subtle {
+    background-color: rgba(255, 112, 112, 0.1) !important;
+}
+
+.bg-danger-subtle {
+    background-color: rgba(220, 53, 69, 0.1) !important;
+}
+
+/* Animation for live updates */
+@keyframes pulse-subtle {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.pulse-subtle {
+    animation: pulse-subtle 2s infinite;
+}
+
+/* Logo dans la barre de navigation */
+.navbar-logo-container {
+    display: inline-block;
+    width: 60px; /* Largeur originale du logo */
+    height: 60px; /* Hauteur originale du logo */
+    overflow: hidden; /* Cache les débordements */
+}
+
+.navbar-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Garde l'aspect ratio */
+    transform: scale(1.5); /* Agrandit le logo de 50% */
+    transform-origin: center; /* Centre la transformation */
+}

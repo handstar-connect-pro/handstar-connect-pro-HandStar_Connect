@@ -1,0 +1,26 @@
+<div class="btn-group {{ alignment }}" {{ attributes }}>
+    {% if splitButton %}
+        <button type="button" class="btn btn-{{ buttonType }}">{{ buttonText }}</button>
+        <button type="button" class="btn btn-{{ buttonType }} dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="visually-hidden">{{ dropdownToggleText }}</span>
+        </button>
+    {% else %}
+        <button type="button" class="btn btn-{{ buttonType }} dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ buttonText }}
+        </button>
+    {% endif %}
+
+    <ul class="dropdown-menu {{ menuAlignment }}">
+        {% for item in items %}
+            {% if item.divider is defined and item.divider %}
+                <li><hr class="dropdown-divider"></li>
+            {% elseif item.type == 'link' %}
+                <li><a class="dropdown-item" href="{{ item.href|default('#') }}">{{ item.content }}</a></li>
+            {% elseif item.type == 'header' %}
+                <li><h6 class="dropdown-header">{{ item.content }}</h6></li>
+            {% elseif item.type == 'text' %}
+                <li><span class="dropdown-item-text">{{ item.content }}</span></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>

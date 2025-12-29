@@ -1,0 +1,703 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Method App\\Entity\\User\:\:getUserIdentifier\(\) should return non\-empty\-string but returns string\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Entity/User.php
+
+		-
+			message: '#^Parameter \#2 \$data of function hash expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Entity/User.php
+
+		-
+			message: '#^Method App\\Enums\\ContactFonction\:\:getChoices\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/ContactFonction.php
+
+		-
+			message: '#^Method App\\Enums\\ContactFonction\:\:getValues\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/ContactFonction.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaCoach\:\:getChoices\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaCoach.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaCoach\:\:getChoicesByCategory\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaCoach.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaCoach\:\:getChoicesByLevel\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaCoach.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaCoach\:\:getChoicesByPriority\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaCoach.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaCoach\:\:getDiplomasForCategory\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaCoach.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaCoach\:\:getDiplomasForLevel\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaCoach.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaCoach\:\:getInternationalDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaCoach.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaCoach\:\:getProfessionalDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaCoach.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaCoach\:\:getValues\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaCoach.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaMentalTrainer\:\:getChoices\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaMentalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaMentalTrainer\:\:getChoicesByCategory\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaMentalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaMentalTrainer\:\:getChoicesByLevel\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaMentalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaMentalTrainer\:\:getChoicesByPriority\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaMentalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaMentalTrainer\:\:getDiplomasForCategory\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaMentalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaMentalTrainer\:\:getDiplomasForLevel\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaMentalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaMentalTrainer\:\:getEliteDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaMentalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaMentalTrainer\:\:getInternationalDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaMentalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaMentalTrainer\:\:getMasterDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaMentalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaMentalTrainer\:\:getOtherDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaMentalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaMentalTrainer\:\:getProfessionalDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaMentalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaMentalTrainer\:\:getSpecializedDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaMentalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaMentalTrainer\:\:getUniversityDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaMentalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaMentalTrainer\:\:getValues\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaMentalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysicalTrainer\:\:getChoices\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysicalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysicalTrainer\:\:getChoicesByCategory\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysicalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysicalTrainer\:\:getChoicesByLevel\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysicalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysicalTrainer\:\:getChoicesByPriority\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysicalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysicalTrainer\:\:getDiplomasForCategory\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysicalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysicalTrainer\:\:getDiplomasForLevel\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysicalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysicalTrainer\:\:getEliteDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysicalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysicalTrainer\:\:getInternationalDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysicalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysicalTrainer\:\:getJepsDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysicalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysicalTrainer\:\:getProfessionalDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysicalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysicalTrainer\:\:getUniversityDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysicalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysicalTrainer\:\:getValues\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysicalTrainer.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysioTherapist\:\:getChoices\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysioTherapist.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysioTherapist\:\:getChoicesByCategory\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysioTherapist.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysioTherapist\:\:getChoicesByLevel\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysioTherapist.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysioTherapist\:\:getChoicesByPriority\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysioTherapist.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysioTherapist\:\:getDiplomasForCategory\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysioTherapist.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysioTherapist\:\:getDiplomasForLevel\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysioTherapist.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysioTherapist\:\:getHighestLevelDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysioTherapist.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysioTherapist\:\:getStateDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysioTherapist.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaPhysioTherapist\:\:getValues\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaPhysioTherapist.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaReferee\:\:getChoices\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaReferee.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaReferee\:\:getChoicesByCategory\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaReferee.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaReferee\:\:getChoicesByLevel\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaReferee.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaReferee\:\:getChoicesByPriority\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaReferee.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaReferee\:\:getDepartementalDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaReferee.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaReferee\:\:getDiplomasForCategory\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaReferee.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaReferee\:\:getDiplomasForLevel\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaReferee.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaReferee\:\:getEliteDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaReferee.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaReferee\:\:getNationaleDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaReferee.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaReferee\:\:getRegionalDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaReferee.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaReferee\:\:getValues\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaReferee.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaVideoAnalyst\:\:getChoices\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaVideoAnalyst.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaVideoAnalyst\:\:getChoicesByCategory\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaVideoAnalyst.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaVideoAnalyst\:\:getChoicesByLevel\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaVideoAnalyst.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaVideoAnalyst\:\:getChoicesByPriority\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaVideoAnalyst.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaVideoAnalyst\:\:getDiplomasForCategory\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaVideoAnalyst.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaVideoAnalyst\:\:getDiplomasForLevel\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaVideoAnalyst.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaVideoAnalyst\:\:getDuDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaVideoAnalyst.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaVideoAnalyst\:\:getInternationalDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaVideoAnalyst.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaVideoAnalyst\:\:getMasterDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaVideoAnalyst.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaVideoAnalyst\:\:getOtherDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaVideoAnalyst.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaVideoAnalyst\:\:getProfessionalDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaVideoAnalyst.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaVideoAnalyst\:\:getUniversityDiplomas\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaVideoAnalyst.php
+
+		-
+			message: '#^Method App\\Enums\\DiplomaVideoAnalyst\:\:getValues\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/DiplomaVideoAnalyst.php
+
+		-
+			message: '#^Method App\\Enums\\LevelDivision\:\:getChoices\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/LevelDivision.php
+
+		-
+			message: '#^Method App\\Enums\\LevelDivision\:\:getChoicesByGender\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/LevelDivision.php
+
+		-
+			message: '#^Method App\\Enums\\LevelDivision\:\:getChoicesByLevel\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/LevelDivision.php
+
+		-
+			message: '#^Method App\\Enums\\LevelDivision\:\:getDivisionsForGender\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/LevelDivision.php
+
+		-
+			message: '#^Method App\\Enums\\LevelDivision\:\:getDivisionsForLevel\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/LevelDivision.php
+
+		-
+			message: '#^Method App\\Enums\\LevelDivision\:\:getNationalDivisions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/LevelDivision.php
+
+		-
+			message: '#^Method App\\Enums\\LevelDivision\:\:getProfessionalDivisions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/LevelDivision.php
+
+		-
+			message: '#^Method App\\Enums\\LevelDivision\:\:getRegionalDivisions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/LevelDivision.php
+
+		-
+			message: '#^Method App\\Enums\\LevelDivision\:\:getValues\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/LevelDivision.php
+
+		-
+			message: '#^Method App\\Enums\\ListRegion\:\:getChoices\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/ListRegion.php
+
+		-
+			message: '#^Method App\\Enums\\ListRegion\:\:getChoicesByMetropolitan\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/ListRegion.php
+
+		-
+			message: '#^Method App\\Enums\\ListRegion\:\:getChoicesByPriority\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/ListRegion.php
+
+		-
+			message: '#^Method App\\Enums\\ListRegion\:\:getMetropolitanRegions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/ListRegion.php
+
+		-
+			message: '#^Method App\\Enums\\ListRegion\:\:getOverseasRegions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/ListRegion.php
+
+		-
+			message: '#^Method App\\Enums\\ListRegion\:\:getValues\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/ListRegion.php
+
+		-
+			message: '#^Method App\\Enums\\PersonGender\:\:getAvailableGenders\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/PersonGender.php
+
+		-
+			message: '#^Method App\\Enums\\PersonGender\:\:getChoices\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/PersonGender.php
+
+		-
+			message: '#^Method App\\Enums\\PersonGender\:\:getChoicesByPriority\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/PersonGender.php
+
+		-
+			message: '#^Method App\\Enums\\PersonGender\:\:getValues\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/PersonGender.php
+
+		-
+			message: '#^Method App\\Enums\\PlayerLaterality\:\:getAvailableLaterality\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/PlayerLaterality.php
+
+		-
+			message: '#^Method App\\Enums\\PlayerLaterality\:\:getChoices\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/PlayerLaterality.php
+
+		-
+			message: '#^Method App\\Enums\\PlayerLaterality\:\:getChoicesByPriority\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/PlayerLaterality.php
+
+		-
+			message: '#^Method App\\Enums\\PlayerLaterality\:\:getValues\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/PlayerLaterality.php
+
+		-
+			message: '#^Method App\\Enums\\PlayerPosition\:\:getAvailablePositions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/PlayerPosition.php
+
+		-
+			message: '#^Method App\\Enums\\PlayerPosition\:\:getBackPositions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/PlayerPosition.php
+
+		-
+			message: '#^Method App\\Enums\\PlayerPosition\:\:getChoices\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/PlayerPosition.php
+
+		-
+			message: '#^Method App\\Enums\\PlayerPosition\:\:getChoicesByPriority\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/PlayerPosition.php
+
+		-
+			message: '#^Method App\\Enums\\PlayerPosition\:\:getChoicesBySide\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/PlayerPosition.php
+
+		-
+			message: '#^Method App\\Enums\\PlayerPosition\:\:getChoicesByZone\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/PlayerPosition.php
+
+		-
+			message: '#^Method App\\Enums\\PlayerPosition\:\:getFieldPositions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/PlayerPosition.php
+
+		-
+			message: '#^Method App\\Enums\\PlayerPosition\:\:getValues\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/PlayerPosition.php
+
+		-
+			message: '#^Method App\\Enums\\PlayerPosition\:\:getWingPositions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/PlayerPosition.php
+
+		-
+			message: '#^Method App\\Enums\\UserProfil\:\:getAvailableTypes\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/UserProfil.php
+
+		-
+			message: '#^Method App\\Enums\\UserProfil\:\:getChoices\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/UserProfil.php
+
+		-
+			message: '#^Method App\\Enums\\UserProfil\:\:getChoicesByPriority\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/UserProfil.php
+
+		-
+			message: '#^Method App\\Enums\\UserProfil\:\:getClubTypes\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/UserProfil.php
+
+		-
+			message: '#^Method App\\Enums\\UserProfil\:\:getMedicalStaffTypes\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/UserProfil.php
+
+		-
+			message: '#^Method App\\Enums\\UserProfil\:\:getRefereeTypes\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/UserProfil.php
+
+		-
+			message: '#^Method App\\Enums\\UserProfil\:\:getTechnicalStaffTypes\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/UserProfil.php
+
+		-
+			message: '#^Method App\\Enums\\UserProfil\:\:getValues\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Enums/UserProfil.php
+
+		-
+			message: '#^Call to an undefined method App\\Repository\\UserRepository\:\:save\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: src/Services/UserService.php
+
+		-
+			message: '#^Method App\\Services\\UserService\:\:createUser\(\) has parameter \$roles with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Services/UserService.php
+
+		-
+			message: '#^Parameter \#1 \$roles of method App\\Entity\\User\:\:setRoles\(\) expects list\<string\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Services/UserService.php
+
+		-
+			message: '#^Property App\\Twig\\Components\\Dropdown\:\:\$items \(array\<array\{type\: string, content\: string, href\?\: string, divider\?\: bool\}\>\) does not accept default value of type array\{array\{type\: ''link'', content\: ''Action'', href\: ''\#''\}, array\{type\: ''link'', content\: ''Another action'', href\: ''\#''\}, array\{type\: ''link'', content\: ''Something else here'', href\: ''\#''\}, array\{type\: ''divider'', divider\: true\}, array\{type\: ''link'', content\: ''Separated link'', href\: ''\#''\}\}\.$#'
+			identifier: property.defaultValue
+			count: 1
+			path: src/Twig/Components/Dropdown.php
+
+		-
+			message: '#^Property App\\Twig\\Components\\Navbar\:\:\$items type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Twig/Components/Navbar.php

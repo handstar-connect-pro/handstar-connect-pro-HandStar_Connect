@@ -1,0 +1,33 @@
+<div class="card {{ widthClass }}" {{ attributes }} {{ ariaHidden != 'false' ? 'aria-hidden="' ~ ariaHidden ~ '"' : '' }}>
+    {% if showImage and imageSrc != '...' %}
+        {% if loading %}
+            <div class="card-img-top placeholder" style="height: 180px;"></div>
+        {% else %}
+            <img src="{{ imageSrc }}" class="card-img-top" alt="{{ imageAlt }}">
+        {% endif %}
+    {% endif %}
+
+    <div class="card-body">
+        {% if loading %}
+            <h5 class="card-title placeholder-glow">
+                <span class="placeholder col-6"></span>
+            </h5>
+            <p class="card-text placeholder-glow">
+                <span class="placeholder col-7"></span>
+                <span class="placeholder col-4"></span>
+                <span class="placeholder col-4"></span>
+                <span class="placeholder col-6"></span>
+                <span class="placeholder col-8"></span>
+            </p>
+            {% if showButton %}
+                <a class="{{ buttonClass }} disabled placeholder col-6" aria-disabled="true"></a>
+            {% endif %}
+        {% else %}
+            <h5 class="card-title">{{ title }}</h5>
+            <p class="card-text">{{ text }}</p>
+            {% if showButton %}
+                <a href="{{ buttonHref }}" class="{{ buttonClass }}">{{ buttonText }}</a>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>

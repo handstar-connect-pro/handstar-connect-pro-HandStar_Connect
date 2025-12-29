@@ -1,0 +1,11 @@
+<button
+    type="{{ type }}"
+    class="{{ class }}"
+    {{ disabled ? 'disabled' : '' }}
+    {{ attributes }}
+>
+    {% if icon %}
+        <i class="{{ icon }} me-2"></i>
+    {% endif %}
+    {{ text }}
+</button>

@@ -1,0 +1,30 @@
+includes:
+    - vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor/phpstan/phpstan-doctrine/extension.neon
+
+parameters:
+    level: 9  # Niveau maximum de strictness
+
+    paths:
+        - src
+        - tests
+
+    # Fichiers exclus de l'analyse
+    excludePaths:
+        - src/Kernel.php
+        - tests/bootstrap.php
+        - src/DataFixtures/*
+
+    # Configuration Symfony
+    symfony:
+        containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml
+
+    # Ignorer des erreurs spécifiques (utiliser avec parcimonie)
+    ignoreErrors:
+        - '#Call to an undefined method App\\Entity\\User::getFullName\(\)#'
+        -
+            message: '#Access to an undefined property#'
+            path: src/Legacy/*
+
+    # Analyses strictes activées
+    reportUnmatchedIgnoredErrors: false

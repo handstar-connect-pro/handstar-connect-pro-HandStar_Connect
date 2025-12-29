@@ -1,0 +1,28 @@
+<p class="d-inline-flex gap-1" {{ attributes }}>
+    {% if triggerType == 'link' %}
+        <a class="{{ triggerClass }}" data-bs-toggle="collapse" href="#{{ id }}" role="button" aria-expanded="false" aria-controls="{{ id }}">
+            {{ triggerText }}
+        </a>
+    {% else %}
+        <button class="{{ triggerClass }}" type="button" data-bs-toggle="collapse" data-bs-target="#{{ id }}" aria-expanded="false" aria-controls="{{ id }}">
+            {{ triggerText }}
+        </button>
+    {% endif %}
+
+    {% if showMultipleTriggers %}
+        {% if additionalTriggerType == 'link' %}
+            <a class="{{ triggerClass }}" data-bs-toggle="collapse" href="#{{ id }}" role="button" aria-expanded="false" aria-controls="{{ id }}">
+                {{ additionalTriggerText }}
+            </a>
+        {% else %}
+            <button class="{{ triggerClass }}" type="button" data-bs-toggle="collapse" data-bs-target="#{{ id }}" aria-expanded="false" aria-controls="{{ id }}">
+                {{ additionalTriggerText }}
+            </button>
+        {% endif %}
+    {% endif %}
+</p>
+<div class="collapse" id="{{ id }}">
+    <div class="{{ cardClass }}">
+        {{ content }}
+    </div>
+</div>

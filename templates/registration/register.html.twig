@@ -1,0 +1,186 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription - HandStar Connect{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        /* CSS personnalisé minimal utilisant les variables Bootstrap */
+        .register-card {
+            border-top: 4px solid var(--bs-primary); /* Bordure supérieure avec la couleur primaire de la marque */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition fluide pour les effets hover */
+        }
+
+        .register-card:hover {
+            transform: translateY(-5px); /* Effet de levée au survol */
+            box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important; /* Ombre accentuée au survol */
+        }
+
+        .form-control:focus {
+            border-color: var(--bs-primary); /* Bordure colorée au focus */
+            box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25); /* Ombre colorée au focus */
+        }
+
+        .min-vh-80 {
+            min-height: 80vh; /* Hauteur minimale de 80% de la vue pour centrer verticalement */
+        }
+
+        /* Styles personnalisés pour les formulaires */
+        .form-label {
+            font-weight: 600;
+            color: var(--bs-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control-lg {
+            border-radius: 10px; /* Coins arrondis pour les champs de formulaire */
+            padding: 0.75rem 1rem; /* Padding généreux pour une meilleure UX */
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container d-flex flex-column justify-content-center min-vh-80 py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card register-card shadow-lg border-0">
+                    <div class="card-body p-4 p-md-5">
+                        {# Titre et sous-titre de bienvenue #}
+                        <div class="text-center mb-4">
+                            <h1 class="h3 fw-bold text-dark mb-2">Créer un compte</h1>
+                            <p class="text-muted">Rejoignez HandStar Connect en quelques étapes</p>
+                        </div>
+
+                        {# Messages flash pour les erreurs de vérification d'email #}
+                        {% for flash_error in app.flashes('verify_email_error') %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ flash_error }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+
+                        {# Erreurs générales du formulaire #}
+                        {% if form_errors(registrationForm) %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ form_errors(registrationForm) }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endif %}
+
+                        {# Formulaire d'inscription avec validation HTML5 #}
+                        {{ form_start(registrationForm, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+
+                            {# Champ prénom - requis pour l'identification personnelle #}
+                            <div class="mb-3">
+                                {{ form_label(registrationForm.firstName, 'Prénom', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                                {{ form_widget(registrationForm.firstName, {
+                                    'attr': {
+                                        'class': 'form-control form-control-lg',
+                                        'placeholder': 'Votre prénom',
+                                        'autocomplete': 'given-name'
+                                    }
+                                }) }}
+                                <div class="invalid-feedback">
+                                    Veuillez saisir votre prénom.
+                                </div>
+                            </div>
+
+                            {# Champ nom - requis pour l'identification personnelle #}
+                            <div class="mb-3">
+                                {{ form_label(registrationForm.lastName, 'Nom', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                                {{ form_widget(registrationForm.lastName, {
+                                    'attr': {
+                                        'class': 'form-control form-control-lg',
+                                        'placeholder': 'Votre nom',
+                                        'autocomplete': 'family-name'
+                                    }
+
+                                }) }}
+                                <div class="invalid-feedback">
+                                    Veuillez saisir votre nom.
+                                </div>
+                            </div>
+
+                            {# Sélection du profil utilisateur - détermine le type de compte #}
+                            <div class="mb-3">
+                                {{ form_label(registrationForm.profil, 'Profil utilisateur', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                                {{ form_widget(registrationForm.profil, {
+                                    'attr': {
+                                        'class': 'form-select form-select-lg',
+                                        'placeholder': 'Sélectionnez votre profil'
+                                    }
+                                }) }}
+                                <div class="form-text">
+                                    Sélectionnez le type de compte qui correspond à votre activité.
+                                </div>
+                            </div>
+
+                            {# Champ email - identifiant unique de connexion #}
+                            <div class="mb-3">
+                                {{ form_label(registrationForm.email, 'Adresse email', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                                {{ form_widget(registrationForm.email, {
+                                    'attr': {
+                                        'class': 'form-control form-control-lg',
+                                        'placeholder': 'exemple@email.com',
+                                        'autocomplete': 'email'
+                                    }
+                                }) }}
+                                <div class="invalid-feedback">
+                                    Veuillez saisir une adresse email valide.
+                                </div>
+                            </div>
+
+                            {# Champ mot de passe - avec contrainte de longueur minimale #}
+                            <div class="mb-3">
+                                {{ form_label(registrationForm.plainPassword, 'Mot de passe', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                                {{ form_widget(registrationForm.plainPassword, {
+                                    'attr': {
+                                        'class': 'form-control form-control-lg',
+                                        'placeholder': 'Votre mot de passe',
+                                        'autocomplete': 'new-password'
+                                    }
+                                }) }}
+                                <div class="form-text">
+                                    Votre mot de passe doit contenir au moins 6 caractères.
+                                </div>
+                            </div>
+
+                            {# Case à cocher pour accepter les conditions d'utilisation #}
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    {{ form_widget(registrationForm.agreeTerms, {
+                                        'attr': {
+                                            'class': 'form-check-input'
+                                        }
+                                    }) }}
+                                    {{ form_label(registrationForm.agreeTerms, "J'accepte les conditions d'utilisation", {
+                                        'label_attr': {
+                                            'class': 'form-check-label'
+                                        }
+                                    }) }}
+                                </div>
+                                {{ form_errors(registrationForm.agreeTerms) }}
+                            </div>
+
+                            {# Bouton de soumission du formulaire #}
+                            <div class="d-grid mb-3">
+                                <button class="btn btn-primary btn-lg fw-semibold py-3" type="submit">
+                                    Inscription
+                                </button>
+                            </div>
+
+                            {# Lien vers la page de connexion pour les utilisateurs existants #}
+                            <div class="text-center pt-3 border-top">
+                                <p class="text-muted mb-0">Déjà un compte ?
+                                    <a href="{{ path('app_login') }}" class="fw-semibold text-primary text-decoration-none">
+                                        Se connecter
+                                    </a>
+                                </p>
+                            </div>
+                        {{ form_end(registrationForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

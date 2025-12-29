@@ -1,0 +1,28 @@
+# Configuration des headers de sécurité
+# Alternative à NelmioSecurityBundle pour Symfony 8
+
+framework:
+    # Configuration des cookies de session
+    session:
+        cookie_secure: auto
+        cookie_httponly: true
+        cookie_samesite: lax
+
+    # Headers de sécurité HTTP
+    http_client:
+        default_options:
+            headers:
+                # Headers de sécurité recommandés
+                X-Content-Type-Options: nosniff
+                X-Frame-Options: DENY
+                Referrer-Policy: strict-origin-when-cross-origin
+
+# Configuration CSP (Content Security Policy)
+# Note: Pour une configuration CSP complète, utiliser un bundle dédié ou configurer manuellement
+# dans un EventListener ou un middleware
+
+services:
+    # Event Listener pour ajouter des headers de sécurité
+    App\EventListener\SecurityHeadersListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }

@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion - HandStar Connect{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        /* CSS personnalisé minimal utilisant les variables Bootstrap */
+        .login-card {
+            border-top: 4px solid var(--bs-primary); /* Bordure supérieure avec la couleur primaire de la marque */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition fluide pour les effets hover */
+        }
+
+        .login-card:hover {
+            transform: translateY(-5px); /* Effet de levée au survol */
+            box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important; /* Ombre accentuée au survol */
+        }
+
+        .form-control:focus {
+            border-color: var(--bs-primary); /* Bordure colorée au focus */
+            box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25); /* Ombre colorée au focus */
+        }
+
+        .min-vh-80 {
+            min-height: 80vh; /* Hauteur minimale de 80% de la vue pour centrer verticalement */
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container d-flex flex-column justify-content-center min-vh-80 py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card login-card shadow-lg border-0">
+                    <div class="card-body p-4 p-md-5">
+                        {# Titre et sous-titre de bienvenue #}
+                        <div class="text-center mb-4">
+                            <h1 class="h3 fw-bold text-dark mb-2 text-nowrap">Bienvenue sur HandStar Connect</h1>
+                            <p class="text-muted">Connectez-vous pour accéder à votre compte</p>
+                        </div>
+
+                        {# Message d'erreur en cas d'échec d'authentification #}
+                        {% if error %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ error.messageKey|trans(error.messageData, 'security') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endif %}
+
+                        {# Message si l'utilisateur est déjà connecté #}
+                        {% if app.user %}
+                            <div class="alert alert-info text-center">
+                                Vous êtes connecté en tant que <strong>{{ app.user.userIdentifier }}</strong>,
+                                <a href="{{ logout_path() }}" class="alert-link">Déconnexion</a>
+                            </div>
+                        {% endif %}
+
+                        {# Formulaire de connexion #}
+                        <form method="post">
+                            {# Champ email - identifiant de connexion #}
+                            <div class="mb-3">
+                                <label for="username" class="form-label fw-semibold">Adresse email</label>
+                                <input type="email"
+                                       value="{{ last_username }}"
+                                       name="_username"
+                                       id="username"
+                                       class="form-control form-control-lg"
+                                       placeholder="exemple@email.com"
+                                       autocomplete="email"
+                                       required
+                                       autofocus>
+                            </div>
+
+                            {# Champ mot de passe #}
+                            <div class="mb-3">
+                                <label for="password" class="form-label fw-semibold">Mot de passe</label>
+                                <input type="password"
+                                       name="_password"
+                                       id="password"
+                                       class="form-control form-control-lg"
+                                       placeholder="Votre mot de passe"
+                                       autocomplete="current-password"
+                                       required>
+                            </div>
+
+                            {# Token CSRF pour la protection contre les attaques #}
+                            <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+
+                            {# Case à cocher "Se souvenir de moi" pour la persistance de session #}
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="_remember_me" id="_remember_me">
+                                    <label class="form-check-label" for="_remember_me">
+                                        Se souvenir de moi
+                                    </label>
+                                </div>
+                            </div>
+
+                            {# Bouton de soumission #}
+                            <div class="d-grid mb-3">
+                                <button class="btn btn-primary btn-lg fw-semibold py-3" type="submit">
+                                    Se connecter
+                                </button>
+                            </div>
+
+                            {# Lien vers la page d'inscription #}
+                            <div class="text-center pt-3 border-top">
+                                <p class="text-muted mb-0">Pas de compte ?
+                                    <a href="{{ path('app_register') }}" class="fw-semibold text-primary text-decoration-none">
+                                        S'enregistrer
+                                    </a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

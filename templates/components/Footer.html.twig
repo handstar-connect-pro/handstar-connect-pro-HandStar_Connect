@@ -1,0 +1,68 @@
+<footer class="bg-dark text-white py-5 mt-auto">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4 mb-lg-0">
+                <a class="navbar-brand d-flex align-items-center mb-3" href="{{ path('app_home') }}">
+                    <img src="{{ asset('images/HandStar_Connect.png') }}" alt="HandStar Connect" height="40" class="me-2">
+                    <span class="fw-bold fs-4 text-white">HandStar Connect</span>
+                </a>
+                <p class="text-light mb-0">
+                    La plateforme de gestion connectée pour le handball français. Simplifiez la gestion de votre club avec nos outils innovants.
+                </p>
+            </div>
+
+            <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                <h5 class="fw-bold mb-3">Navigation</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="{{ path('app_home') }}" class="text-light text-decoration-none">Accueil</a></li>
+                    <li class="mb-2"><a href="#features" class="text-light text-decoration-none">Fonctionnalités</a></li>
+                    <li class="mb-2"><a href="#about" class="text-light text-decoration-none">À propos</a></li>
+                    <li class="mb-2"><a href="{{ path('app_login') }}" class="text-light text-decoration-none">Connexion</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+                <h5 class="fw-bold mb-3">Liens utiles</h5>
+                <ul class="list-unstyled">
+                    {% for link in links %}
+                    <li class="mb-2">
+                        <a href="{{ link.href }}" class="text-light text-decoration-none">{{ link.text }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-4">
+                <h5 class="fw-bold mb-3">Suivez-nous</h5>
+                <div class="d-flex gap-3 mb-4">
+                    {% for social in socialLinks %}
+                    <a href="{{ social.href }}" class="text-white text-decoration-none" aria-label="{{ social.label }}">
+                        <i class="bi {{ social.icon }} fs-4"></i>
+                    </a>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                    <p class="text-light mb-2">Newsletter</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Votre email" aria-label="Email newsletter">
+                        <button class="btn btn-primary" type="button">S'abonner</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-4 border-light">
+
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <p class="mb-0 text-light">{{ copyright }}</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <p class="mb-0 text-light">
+                    Développé avec <i class="bi bi-heart-fill text-danger"></i> pour le handball français
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

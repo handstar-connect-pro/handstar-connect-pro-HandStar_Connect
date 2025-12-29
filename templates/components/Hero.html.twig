@@ -1,0 +1,66 @@
+<section class="{{ background }} py-5 py-lg-6">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="pe-lg-4">
+                    <h1 class="display-4 fw-bold text-dark mb-3">{{ title }}</h1>
+                    <p class="lead text-muted mb-4">{{ subtitle }}</p>
+
+                    <div class="d-flex flex-wrap gap-3 mb-5">
+                        <a href="{{ primaryButtonLink }}" class="btn btn-primary btn-lg px-4 py-3 fw-semibold">
+                            {{ primaryButtonText }}
+                        </a>
+                        <a href="{{ secondaryButtonLink }}" class="btn btn-outline-primary btn-lg px-4 py-3 fw-semibold">
+                            {{ secondaryButtonText }}
+                        </a>
+                    </div>
+
+                    {# Statistiques ou points clés #}
+                    <div class="row g-4">
+                        <div class="col-4">
+                            <div class="text-center">
+                                <h3 class="fw-bold text-primary mb-1">500+</h3>
+                                <p class="text-muted small mb-0">Clubs</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="text-center">
+                                <h3 class="fw-bold text-primary mb-1">10K+</h3>
+                                <p class="text-muted small mb-0">Utilisateurs</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="text-center">
+                                <h3 class="fw-bold text-primary mb-1">24/7</h3>
+                                <p class="text-muted small mb-0">Support</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if showImage %}
+            <div class="col-lg-6 mt-5 mt-lg-0">
+                <div class="position-relative">
+                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                        <div class="card-body p-0">
+                            {# Image placeholder - à remplacer par une image réelle #}
+                            <div class="bg-primary bg-opacity-10 d-flex align-items-center justify-content-center" style="height: 400px;">
+                                <div class="text-center p-4">
+                                    <i class="bi bi-bar-chart-fill display-1 text-primary mb-3"></i>
+                                    <h4 class="fw-bold text-dark">Dashboard de gestion</h4>
+                                    <p class="text-muted">Interface moderne et intuitive</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {# Éléments décoratifs #}
+                    <div class="position-absolute top-0 start-0 translate-middle bg-primary rounded-circle" style="width: 60px; height: 60px; opacity: 0.1;"></div>
+                    <div class="position-absolute bottom-0 end-0 translate-middle bg-secondary rounded-circle" style="width: 80px; height: 80px; opacity: 0.1;"></div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

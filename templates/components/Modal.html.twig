@@ -1,0 +1,62 @@
+<div {{ attributes }}>
+    <!-- Trigger buttons -->
+    <div class="d-flex flex-wrap gap-2 mb-3">
+        {% for trigger in triggers %}
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="{{ trigger.target }}" data-bs-whatever="{{ trigger.whatever }}">
+                {{ trigger.text }}
+            </button>
+        {% endfor %}
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="{{ id }}" tabindex="-1" aria-labelledby="{{ id }}Label" aria-hidden="true"
+         {{ staticBackdrop ? 'data-bs-backdrop="static" data-bs-keyboard="false"' : '' }}>
+        <div class="modal-dialog {{ size }} {{ scrollable ? 'modal-dialog-scrollable' : '' }} {{ centered ? 'modal-dialog-centered' : '' }}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="{{ id }}Label">{{ title }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% if includeForm and customBody is empty %}
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name-{{ id }}" class="col-form-label">{{ recipientLabel }}</label>
+                                <input type="text" class="form-control" id="recipient-name-{{ id }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text-{{ id }}" class="col-form-label">{{ messageLabel }}</label>
+                                <textarea class="form-control" id="message-text-{{ id }}"></textarea>
+                            </div>
+                        </form>
+                    {% elseif customBody is not empty %}
+                        {{ customBody|raw }}
+                    {% else %}
+                        <slot></slot>
+                    {% endif %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ closeButtonText }}</button>
+                    <button type="button" class="btn btn-primary">{{ submitButtonText }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('{{ id }}');
+    if (modal) {
+        modal.addEventListener('shown.bs.modal', function(event) {
+            const button = event.relatedTarget;
+            const recipient = button ? button.getAttribute('data-bs-whatever') : '';
+            const recipientInput = modal.querySelector('#recipient-name-{{ id }}');
+            if (recipient && recipientInput) {
+                recipientInput.value = recipient;
+                recipientInput.focus();
+            }
+        });
+    }
+});
+</script>

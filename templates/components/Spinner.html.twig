@@ -1,0 +1,5 @@
+<div class="spinner-{{ type }} {{ color }} {{ size ? 'spinner-' ~ type ~ '-' ~ size : '' }}" role="status">
+  {% if showLabel %}
+    <span class="visually-hidden">{{ label }}</span>
+  {% endif %}
+</div>

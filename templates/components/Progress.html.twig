@@ -1,0 +1,13 @@
+<div class="progress {{ height }}"
+     role="progressbar"
+     aria-label="{{ label }}"
+     aria-valuenow="{{ value }}"
+     aria-valuemin="{{ min }}"
+     aria-valuemax="{{ max }}">
+  <div class="progress-bar {{ style }} {{ striped ? 'progress-bar-striped' : '' }} {{ animated ? 'progress-bar-animated' : '' }}"
+       style="width: {{ value }}%">
+    {% if showLabel %}
+      {{ value }}%
+    {% endif %}
+  </div>
+</div>

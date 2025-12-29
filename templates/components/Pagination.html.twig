@@ -1,0 +1,25 @@
+<nav aria-label="{{ ariaLabel }}">
+  <ul class="pagination {{ size ? 'pagination-' ~ size : '' }} {{ alignment ? 'justify-content-' ~ alignment : '' }}">
+    {% if showPreviousNext %}
+      <li class="page-item {{ previousDisabled ? 'disabled' : '' }}">
+        <a class="page-link" href="#" {{ previousDisabled ? 'tabindex="-1" aria-disabled="true"' : '' }}>
+          {{ previousText }}
+        </a>
+      </li>
+    {% endif %}
+
+    {% for page in 1..totalPages %}
+      <li class="page-item {{ page == currentPage ? 'active' : '' }}" {{ page == currentPage ? 'aria-current="page"' : '' }}>
+        <a class="page-link" href="#">{{ page }}</a>
+      </li>
+    {% endfor %}
+
+    {% if showPreviousNext %}
+      <li class="page-item {{ nextDisabled ? 'disabled' : '' }}">
+        <a class="page-link" href="#" {{ nextDisabled ? 'tabindex="-1" aria-disabled="true"' : '' }}>
+          {{ nextText }}
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>

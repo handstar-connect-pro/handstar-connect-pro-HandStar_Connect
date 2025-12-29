@@ -1,0 +1,17 @@
+<div class="toast {{ background }} {{ textColor }}"
+     role="alert"
+     aria-live="assertive"
+     aria-atomic="true"
+     {{ autohide ? 'data-bs-autohide="true" data-bs-delay="' ~ delay ~ '"' : 'data-bs-autohide="false"' }}>
+  <div class="toast-header {{ background }} {{ textColor }}">
+    {% if imageSrc != '...' %}
+      <img src="{{ imageSrc }}" class="rounded me-2" alt="{{ imageAlt }}">
+    {% endif %}
+    <strong class="me-auto">{{ title }}</strong>
+    <small>{{ time }}</small>
+    <button type="button" class="btn-close {{ textColor ? 'btn-close-white' : '' }}" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+  <div class="toast-body">
+    {{ message }}
+  </div>
+</div>

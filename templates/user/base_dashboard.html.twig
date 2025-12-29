@@ -1,0 +1,275 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+{% endblock %}
+
+{% block body %}
+    {% set user = app.user %}
+
+    {% set defaultMenuItems = [
+        {
+            label: 'Tableau de bord',
+            href: path('user_dashboard'),
+            icon: '<i class="bi bi-speedometer2"></i>',
+            active: app.request.attributes.get('_route') == 'user_dashboard'
+        },
+        {
+            label: 'Mon profil',
+            href: path('user_profile_index'),
+            icon: '<i class="bi bi-person"></i>',
+            active: app.request.attributes.get('_route') == 'user_profile_index'
+        },
+        {
+            label: 'Mes activités',
+            href: '#',
+            icon: '<i class="bi bi-calendar-check"></i>',
+            children: [
+                {
+                    label: 'Calendrier',
+                    href: '#',
+                    icon: '<i class="bi bi-calendar"></i>'
+                },
+                {
+                    label: 'Historique',
+                    href: '#',
+                    icon: '<i class="bi bi-clock-history"></i>'
+                }
+            ]
+        },
+        {
+            label: 'Documents',
+            href: '#',
+            icon: '<i class="bi bi-folder"></i>',
+            badge: '3'
+        },
+        {
+            label: 'Messages',
+            href: '#',
+            icon: '<i class="bi bi-chat-left-text"></i>',
+            badge: '5'
+        },
+        {
+            label: 'Paramètres',
+            href: '#',
+            icon: '<i class="bi bi-gear"></i>'
+        },
+        {
+            label: 'Aide & Support',
+            href: '#',
+            icon: '<i class="bi bi-question-circle"></i>'
+        }
+    ] %}
+
+    {% set defaultBreadcrumbs = [
+        {
+            label: 'Tableau de bord',
+            href: path('user_dashboard'),
+            active: block('page_title') == 'Tableau de bord utilisateur'
+        }
+    ] %}
+
+    <div class="dashboard-wrapper d-flex">
+        {# Sidebar #}
+        <twig:Sidebar
+            :menuItems="defaultMenuItems"
+            brand="HandStar Connect"
+            :brandHref="path('user_dashboard')"
+            variant="light"
+            :collapsible="true"
+            :collapsed="false"
+            width="250px"
+            :logoPath="asset('images/HandStar_Connect.png')"
+            :showLogo="true"
+            :userName=""
+            :userRole=""
+        />
+
+        {# Main content #}
+        <div class="dashboard-main flex-grow-1" style="margin-left: 250px; transition: margin-left 0.3s ease;">
+            {# Header #}
+            <twig:DashboardHeader
+                :title="block('page_title')|default('Tableau de bord')"
+                :subtitle="block('page_subtitle')|default('')"
+                :breadcrumbs="defaultBreadcrumbs"
+                :actions="[]"
+                :showSearch="true"
+                searchPlaceholder="Rechercher dans le dashboard..."
+                :showNotifications="true"
+                :notificationCount="3"
+                :userName="user ? user.email : 'Utilisateur'"
+                :showUserMenu="true"
+            />
+
+            {# Content area #}
+            <main class="dashboard-content p-4">
+                {% block dashboard_content %}
+                    {# Le contenu spécifique à chaque page sera inséré ici #}
+                    {{ block('content') }}
+                {% endblock %}
+            </main>
+
+            {# Footer #}
+            <footer class="dashboard-footer bg-light border-top py-3 px-4">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="text-muted small">
+                                &copy; {{ "now"|date("Y") }} HandStar Connect. Tous droits réservés.
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-end small">
+                                <a href="#" class="text-muted text-decoration-none me-3">Conditions d'utilisation</a>
+                                <a href="#" class="text-muted text-decoration-none me-3">Politique de confidentialité</a>
+                                <a href="#" class="text-muted text-decoration-none">Aide</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Gestion du sidebar collapsible
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.querySelector('.dashboard-sidebar');
+            const mainContent = document.querySelector('.dashboard-main');
+            const toggler = document.querySelector('.sidebar-toggler');
+
+            if (toggler && sidebar && mainContent) {
+                toggler.addEventListener('click', function() {
+                    const isCollapsed = sidebar.classList.contains('collapsed');
+
+                    if (isCollapsed) {
+                        sidebar.classList.remove('collapsed');
+                        sidebar.style.width = '250px';
+                        mainContent.style.marginLeft = '250px';
+                        toggler.innerHTML = '<i class="bi bi-chevron-left"></i>';
+                        toggler.title = 'Réduire';
+                    } else {
+                        sidebar.classList.add('collapsed');
+                        sidebar.style.width = '70px';
+                        mainContent.style.marginLeft = '70px';
+                        toggler.innerHTML = '<i class="bi bi-chevron-right"></i>';
+                        toggler.title = 'Développer';
+                    }
+                });
+            }
+
+            // Gestion des menus déroulants dans la sidebar
+            const menuItemsWithChildren = document.querySelectorAll('.sidebar-menu-item.has-children');
+            menuItemsWithChildren.forEach(item => {
+                const link = item.querySelector('.sidebar-menu-link');
+                if (link) {
+                    link.addEventListener('click', function(e) {
+                        if (!this.closest('.sidebar-menu-item').classList.contains('active')) {
+                            e.preventDefault();
+                            this.closest('.sidebar-menu-item').classList.toggle('active');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+    <style>
+        .dashboard-wrapper {
+            min-height: 100vh;
+        }
+
+        .dashboard-main {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dashboard-content {
+            flex-grow: 1;
+            background-color: #f8f9fa;
+        }
+
+        .dashboard-footer {
+            background-color: #f8f9fa;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .dashboard-sidebar {
+                position: fixed;
+                z-index: 1040;
+                height: 100vh;
+            }
+
+            .dashboard-main {
+                margin-left: 70px !important;
+            }
+
+            .dashboard-sidebar.collapsed {
+                width: 0 !important;
+                overflow: hidden;
+            }
+
+            .dashboard-sidebar:not(.collapsed) {
+                width: 250px !important;
+            }
+
+            .dashboard-main:has(.dashboard-sidebar.collapsed) {
+                margin-left: 0 !important;
+            }
+        }
+
+        /* Animation pour les sous-menus */
+        .sidebar-submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .sidebar-menu-item.active .sidebar-submenu {
+            max-height: 500px;
+        }
+
+        /* Styles pour les cartes du dashboard */
+        .dashboard-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+
+        .card-header-custom {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        /* Stats cards */
+        .stat-card {
+            border-left: 4px solid;
+        }
+
+        .stat-card-primary {
+            border-left-color: var(--primary-color);
+        }
+
+        .stat-card-success {
+            border-left-color: var(--success-color);
+        }
+
+        .stat-card-info {
+            border-left-color: var(--info-color);
+        }
+
+        .stat-card-warning {
+            border-left-color: var(--warning-color);
+        }
+    </style>
+{% endblock %}
