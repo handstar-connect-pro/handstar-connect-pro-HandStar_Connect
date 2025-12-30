@@ -1,0 +1,178 @@
+name: Validate Enums
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Exécution quotidienne à minuit
+    - cron: '0 0 * * *'
+
+jobs:
+  validate-enums:
+    name: Validate Enum Values
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
+        coverage: none
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Run enum validation script
+      run: php scripts/migrate-enum-strings.php --validate
+
+    - name: Run unit tests for EnumValidationService
+      run: ./vendor/bin/phpunit tests/Unit/Services/EnumValidationServiceTest.php --testdox
+
+    - name: Check for hardcoded enum strings (dry run)
+      run: php scripts/migrate-enum-strings.php --dry-run
+      continue-on-error: true
+
+    - name: Generate validation report
+      if: always()
+      run: |
+        echo "=== Validation Report ===" > validation-report.md
+        echo "Date: $(date)" >> validation-report.md
+        echo "" >> validation-report.md
+
+        # Exécuter la validation et capturer la sortie
+        php scripts/migrate-enum-strings.php --validate 2>&1 | tee -a validation-report.md
+
+        echo "" >> validation-report.md
+        echo "=== Hardcoded Strings Detection ===" >> validation-report.md
+        php scripts/migrate-enum-strings.php --dry-run 2>&1 | tail -20 >> validation-report.md
+
+    - name: Upload validation report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: enum-validation-report
+        path: validation-report.md
+
+  test-enum-validation:
+    name: Test Enum Validation Integration
+    runs-on: ubuntu-latest
+    needs: validate-enums
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Run integration tests
+      run: |
+        # Créer un fichier de test avec des chaînes en dur
+        cat > test-hardcoded.php << 'EOF'
+        <?php
+
+        // Test avec des chaînes en dur (devrait être détecté)
+        $gender = 'MALE';  // OK - valeur valide
+        $invalidGender = 'male';  // Problème - casse incorrecte
+        $position = 'GOALKEEPER';  // OK
+        $invalidPosition = 'goalkeeper';  // Problème
+
+        // Test avec des constantes d'énumération (devrait être OK)
+        use App\Enums\PersonGender;
+        $goodGender = PersonGender::MALE->value;  // Bonne pratique
+
+        EOF
+
+        # Exécuter le script de validation
+        php scripts/migrate-enum-strings.php --validate
+
+    - name: Check example controller
+      run: |
+        # Vérifier que le contrôleur d'exemple fonctionne
+        php bin/console debug:router | grep enum-validation
+
+  security-scan:
+    name: Security Scan for Enum Vulnerabilities
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Scan for enum injection vulnerabilities
+      run: |
+        echo "=== Scanning for enum injection vulnerabilities ==="
+
+        # Rechercher des utilisations non validées de données utilisateur avec des énumérations
+        grep -r "from(" src/ --include="*.php" || echo "No from() calls found"
+        grep -r "tryFrom(" src/ --include="*.php" || echo "No tryFrom() calls found"
+
+        # Vérifier les validations manquantes
+        echo ""
+        echo "=== Checking for missing validations ==="
+
+        # Patterns à rechercher
+        patterns=(
+          "setGender.*['\"]"
+          "setHandedness.*['\"]"
+          "setPosition.*['\"]"
+          "setDivision.*['\"]"
+          "setProfil.*['\"]"
+        )
+
+        for pattern in "${patterns[@]}"; do
+          echo "Searching for: $pattern"
+          grep -r "$pattern" src/ --include="*.php" | head -5 || echo "None found"
+          echo ""
+        done
+
+    - name: Generate security report
+      run: |
+        cat > security-report.md << 'EOF'
+        # Enum Security Report
+
+        ## Checks Performed
+
+        1. **Enum Injection Detection**: Scanned for unsafe `from()` calls
+        2. **Missing Validation**: Checked for direct enum assignments without validation
+        3. **Hardcoded Strings**: Identified potential security issues with string literals
+
+        ## Recommendations
+
+        1. Always use `tryFrom()` instead of `from()` for user input
+        2. Validate enum values before assignment
+        3. Use EnumValidationService for consistent validation
+        4. Avoid string literals in favor of enum constants
+
+        ## Next Steps
+
+        - Review any findings in the scan output
+        - Update code to use EnumValidationService
+        - Add validation middleware for enum parameters
+        EOF
+
+    - name: Upload security report
+      uses: actions/upload-artifact@v4
+      with:
+        name: enum-security-report
+        path: security-report.md
