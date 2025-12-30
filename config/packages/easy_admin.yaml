@@ -1,0 +1,4 @@
+easy_admin:
+    design:
+        icon_set: 'fontawesome'
+        icon_prefix: 'fa'

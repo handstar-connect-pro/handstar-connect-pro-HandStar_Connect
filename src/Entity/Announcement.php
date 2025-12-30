@@ -92,7 +92,7 @@ class Announcement
     {
         if ($offerType === null) {
             $this->offerType = null;
-        } elseif (is_string($offerType)) {
+        } elseif (\is_string($offerType)) {
             $this->offerType = AnnouncementType::from($offerType);
         } else {
             $this->offerType = $offerType;
@@ -152,7 +152,7 @@ class Announcement
     {
         if ($offerUserProfil === null) {
             $this->offerUserProfil = null;
-        } elseif (is_string($offerUserProfil)) {
+        } elseif (\is_string($offerUserProfil)) {
             $this->offerUserProfil = UserProfil::from($offerUserProfil);
         } else {
             $this->offerUserProfil = $offerUserProfil;
@@ -200,7 +200,7 @@ class Announcement
     {
         if ($leagueConcerned === null) {
             $this->leagueConcerned = null;
-        } elseif (is_string($leagueConcerned)) {
+        } elseif (\is_string($leagueConcerned)) {
             $this->leagueConcerned = LevelDivision::from($leagueConcerned);
         } else {
             $this->leagueConcerned = $leagueConcerned;
@@ -236,7 +236,7 @@ class Announcement
     {
         if ($location === null) {
             $this->location = null;
-        } elseif (is_string($location)) {
+        } elseif (\is_string($location)) {
             $this->location = ListRegion::from($location);
         } else {
             $this->location = $location;
@@ -272,7 +272,7 @@ class Announcement
     {
         if ($offerStatus === null) {
             $this->offerStatus = null;
-        } elseif (is_string($offerStatus)) {
+        } elseif (\is_string($offerStatus)) {
             $this->offerStatus = AnnouncementStatus::from($offerStatus);
         } else {
             $this->offerStatus = $offerStatus;
@@ -351,7 +351,7 @@ class Announcement
     {
         if ($profil === null) {
             $this->profil = null;
-        } elseif (is_string($profil)) {
+        } elseif (\is_string($profil)) {
             $this->profil = UserProfil::from($profil);
         } else {
             $this->profil = $profil;
@@ -361,7 +361,7 @@ class Announcement
     }
 
     /**
-     * Alternative getter for PropertyAccessor and forms
+     * Alternative getter for PropertyAccessor and forms.
      */
     public function getProfilString(): string
     {

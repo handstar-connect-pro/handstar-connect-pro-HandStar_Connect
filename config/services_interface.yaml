@@ -1,0 +1,58 @@
+# Configuration des services avec interfaces
+services:
+    # Interfaces
+    App\Services\Interface\AnnouncementManagerInterface:
+        class: App\Services\AnnouncementManager
+        autowire: true
+
+    App\Services\Interface\AnnouncementResponseManagerInterface:
+        class: App\Services\AnnouncementResponseManager
+        autowire: true
+
+    App\Services\Interface\FavoriteManagerInterface:
+        class: App\Services\FavoriteManager
+        autowire: true
+
+    App\Services\Interface\AccessControlServiceInterface:
+        class: App\Services\AccessControlService
+        autowire: true
+
+    # Services spécialisés
+    App\Services\AnnouncementManager:
+        autowire: true
+        public: true
+
+    App\Services\AnnouncementResponseManager:
+        autowire: true
+        public: true
+
+    App\Services\FavoriteManager:
+        autowire: true
+        public: true
+
+    # Service principal (façade)
+    App\Services\AnnouncementService:
+        autowire: true
+        public: true
+        arguments:
+            $announcementManager: '@App\Services\Interface\AnnouncementManagerInterface'
+            $responseManager: '@App\Services\Interface\AnnouncementResponseManagerInterface'
+            $favoriteManager: '@App\Services\Interface\FavoriteManagerInterface'
+
+    # Autres services
+    App\Services\AccessControlService:
+        autowire: true
+        public: true
+
+    App\Services\NotificationService:
+        autowire: true
+        public: true
+
+    App\Services\UserService:
+        autowire: true
+        public: true
+
+    # Service de validation
+    App\Services\ValidationService:
+        autowire: true
+        public: true

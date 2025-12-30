@@ -98,7 +98,7 @@
                 searchPlaceholder="Rechercher dans le dashboard..."
                 :showNotifications="true"
                 :notificationCount="3"
-                :userName="user ? user.email : 'Utilisateur'"
+                :userName="user ? (user.firstName ~ ' ' ~ user.lastName) : 'Utilisateur'"
                 :showUserMenu="true"
             />
 

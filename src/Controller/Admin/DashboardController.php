@@ -2,6 +2,19 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Announcement;
+use App\Entity\AnnouncementResponse;
+use App\Entity\Club;
+use App\Entity\Coach;
+use App\Entity\MentalTrainer;
+use App\Entity\PhysicalTrainer;
+use App\Entity\PhysioTherapist;
+use App\Entity\Player;
+use App\Entity\Referee;
+use App\Entity\SavedAnnouncement;
+use App\Entity\TechnicalDirector;
+use App\Entity\User;
+use App\Entity\VideoAnalyst;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -13,27 +26,8 @@ class DashboardController extends AbstractDashboardController
 {
     public function index(): Response
     {
-        return parent::index();
-
-        // Option 1. You can make your dashboard redirect to some common page of your backend
-        //
-        // 1.1) If you have enabled the "pretty URLs" feature:
-        // return $this->redirectToRoute('admin_user_index');
-        //
-        // 1.2) Same example but using the "ugly URLs" that were used in previous EasyAdmin versions:
-        // $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        // return $this->redirect($adminUrlGenerator->setController(OneOfYourCrudController::class)->generateUrl());
-
-        // Option 2. You can make your dashboard redirect to different pages depending on the user
-        //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirectToRoute('...');
-        // }
-
-        // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
-        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
-        //
-        // return $this->render('some/path/my-user_dashboard.html.twig');
+        // Option 3: Render custom template using EasyAdmin's default layout
+        return $this->render('@EasyAdmin/page/content.html.twig');
     }
 
     public function configureDashboard(): Dashboard
@@ -45,6 +39,24 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+        yield MenuItem::section('Utilisateurs');
+        yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-users', User::class);
+        yield MenuItem::section('Annonces');
+        yield MenuItem::linkToCrud('Annonces', 'fa fa-bullhorn', Announcement::class);
+        yield MenuItem::linkToCrud('Réponses aux annonces', 'fa fa-reply', AnnouncementResponse::class);
+        yield MenuItem::linkToCrud('Annonces sauvegardées', 'fa fa-bookmark', SavedAnnouncement::class);
+        yield MenuItem::section('Clubs');
+        yield MenuItem::linkToCrud('Clubs (Entités)', 'fa fa-flag', Club::class);
+        yield MenuItem::linkToCrud('Utilisateurs Clubs', 'fa fa-users', User::class)->setController(ClubUserCrudController::class);
+        yield MenuItem::section('Personnel');
+        yield MenuItem::linkToCrud('Joueurs', 'fa fa-running', User::class)->setController(PlayerUserCrudController::class);
+        yield MenuItem::linkToCrud('Entraîneurs', 'fa fa-user-tie', User::class)->setController(CoachUserCrudController::class);
+        yield MenuItem::linkToCrud('Directeurs Techniques', 'fa fa-id-badge', User::class)->setController(TechnicalDirectorUserCrudController::class);
+        yield MenuItem::linkToCrud('Préparateurs Physiques', 'fa fa-dumbbell', User::class)->setController(PhysicalTrainerUserCrudController::class);
+        yield MenuItem::linkToCrud('Préparateurs Mentaux', 'fa fa-brain', User::class)->setController(MentalTrainerUserCrudController::class);
+        yield MenuItem::linkToCrud('Kinésithérapeutes', 'fa fa-heartbeat', User::class)->setController(PhysiotherapistUserCrudController::class);
+        yield MenuItem::linkToCrud('Analystes Vidéo', 'fa fa-video', User::class)->setController(VideoAnalystUserCrudController::class);
+        yield MenuItem::linkToCrud('Arbitres', 'fa fa-whistle', User::class)->setController(RefereeUserCrudController::class);
+        yield MenuItem::linkToCrud('Entraîneurs de Gardiens', 'fa fa-hockey-puck', User::class)->setController(GoalkeeperCoachUserCrudController::class);
     }
 }

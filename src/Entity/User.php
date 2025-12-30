@@ -279,4 +279,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * Retourne le nom complet de l'utilisateur (prénom + nom).
+     */
+    public function getDisplayName(): string
+    {
+        return trim($this->firstName . ' ' . $this->lastName);
+    }
+
+    /**
+     * Représentation textuelle de l'utilisateur (utilisée par EasyAdmin et autres).
+     */
+    public function __toString(): string
+    {
+        return $this->getDisplayName();
+    }
 }
